@@ -35,10 +35,13 @@ public abstract class EnderPlugin extends JavaPlugin implements IEnderPlugin {
     public void onCoreEnable() {
         this.loadConfig();
         this.logger = this.getEnderLogger();
+        logger.info("Enabling ", getPluginMeta().getName(), " (", getPluginMeta().getVersion(), ")");
     }
 
     @Override
-    public void onCoreDisable() {}
+    public void onCoreDisable() {
+        logger.info("Disabling ", getPluginMeta().getName(), " (", getPluginMeta().getVersion(), ")");
+    }
 
     public Component getPrefix(String prefix, String hex, boolean useArrow) {
         int[] rgb = EnderColor.hexToRgb(hex);
