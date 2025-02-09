@@ -2,10 +2,11 @@ package net.endkind.enderCore.platform.papermc;
 
 import net.endkind.enderCore.api.IEnderPlugin;
 import net.endkind.enderCore.core.EnderLogger;
-import net.endkind.enderCore.utils.AnsiTextFormatter;
 import net.endkind.enderCore.utils.EnderColor;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.PluginCommand;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -106,5 +107,17 @@ public abstract class EnderPlugin extends JavaPlugin implements IEnderPlugin {
         }
 
         return message;
+    }
+
+    @Override
+    public void registerBukkitCommand(String name, CommandExecutor cmdExecutor) {
+        PluginCommand cmd = getCommand(name);
+
+        if (cmd == null) {
+            logger.error("Command ", name, " cannot be found in plugin.yml");
+            return;
+        }
+
+        cmd.setExecutor(cmdExecutor);
     }
 }
