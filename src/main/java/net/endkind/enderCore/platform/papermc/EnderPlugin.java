@@ -5,10 +5,12 @@ import net.endkind.enderCore.core.EnderLogger;
 import net.endkind.enderCore.utils.EnderColor;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
+import org.bukkit.Bukkit;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
@@ -119,5 +121,10 @@ public abstract class EnderPlugin extends JavaPlugin implements IEnderPlugin {
         }
 
         cmd.setExecutor(cmdExecutor);
+    }
+
+    @Override
+    public void registerListener(Listener listener) {
+        Bukkit.getPluginManager().registerEvents(listener, this);
     }
 }

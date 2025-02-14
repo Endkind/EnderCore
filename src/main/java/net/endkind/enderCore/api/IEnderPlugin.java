@@ -3,6 +3,7 @@ package net.endkind.enderCore.api;
 import net.endkind.enderCore.core.EnderLogger;
 import net.kyori.adventure.text.Component;
 import org.bukkit.command.CommandExecutor;
+import org.bukkit.event.Listener;
 
 public interface IEnderPlugin {
     void onCoreEnable();
@@ -16,4 +17,5 @@ public interface IEnderPlugin {
     EnderLogger getEnderLogger();
     Component genMessage(Component... msg);
     void registerBukkitCommand(String name, CommandExecutor cmdExecutor);
+    void registerListener(Listener listener);
 }
